@@ -16,10 +16,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('students')->insert([
+        DB::table('users')->insert([
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),
             'username' => 'Admin',
+            'role' => 'admin',
             'name' => 'Admin',
             'school' => 'UC',
             'city' => 'Surabaya',
@@ -27,7 +28,7 @@ class UserSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
-        // DB::table('students')->insert([
+        // DB::table('users')->insert([
         //     'name' => 'User',
         //     'email' => 'user@gmail.com',
         //     'password' => Hash::make('user123'),

@@ -15,7 +15,7 @@ class RelationStudentGamedata extends Migration
     {
         Schema::table('bio9_student_gamedata', function (Blueprint $table) {
             $table->foreign('student_id_gamedata')
-            ->references('student_id')->on('students')
+            ->references('id')->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });
