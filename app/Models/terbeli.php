@@ -9,6 +9,7 @@ class terbeli extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table='bio9_item_terbeli';
     protected $fillable =[
         'terbeli_id',

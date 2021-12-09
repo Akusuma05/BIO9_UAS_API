@@ -21,16 +21,6 @@ class TerjawabController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +28,13 @@ class TerjawabController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        terjawab::create([
+            'terjawab_id' => $request->terjawab_id,
+            'pertanyaan_id_terjawab' => $request->pertanyaan_id_terjawab,
+            'student_gamedata_id_terjawab' => $request->student_gamedata_id_terjawab
+        ]);
+
+        return ['message' => 'data has been saved'];
     }
 
     /**
@@ -54,17 +50,6 @@ class TerjawabController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,7 +58,12 @@ class TerjawabController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $terjawab = terjawab::where('terjawab_id', $id);
+        $terjawab->update([
+            'pertanyaan_id_terjawab' => $request->pertanyaan_id_terjawab,
+            'student_gamedata_id_terjawab' => $request->student_gamedata_id_terjawab
+        ]);
+        return ['message' => 'data has been updated'];
     }
 
     /**
@@ -84,6 +74,8 @@ class TerjawabController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $terjawab = terjawab::where('terjawab_id', $id);
+        $terjawab->delete();
+        return ['message' => 'data has been deleted'];
     }
 }

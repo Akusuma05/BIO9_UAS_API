@@ -21,16 +21,6 @@ class GamedataController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +28,17 @@ class GamedataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        gamedata::create([
+            'student_gamedata_id' => $request->student_gamedata_id,
+            'student_id_gamedata' => $request->student_id_gamedata,
+            'total_damage' => $request->total_damage,
+            'health_left' => $request->health_left,
+            'money' => $request->money,
+            'time_left' => $request->time_left,
+            'current_damage' => $request->current_damage,
+        ]);
+
+        return ['message' => 'data has been saved'];
     }
 
     /**
@@ -54,17 +54,6 @@ class GamedataController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,7 +62,16 @@ class GamedataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $gamedata = gamedata::findOrFail($id);
+        $gamedata->update([
+            'student_id_gamedata' => $request->student_id_gamedata,
+            'total_damage' => $request->total_damage,
+            'health_left' => $request->health_left,
+            'money' => $request->money,
+            'time_left' => $request->time_left,
+            'current_damage' => $request->current_damage,
+        ]);
+        return ['message' => 'data has been updated'];
     }
 
     /**
@@ -84,6 +82,8 @@ class GamedataController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gamedata = gamedata::findOrFail($id);
+        $gamedata->delete();
+        return ['message' => 'data has been deleted'];
     }
 }

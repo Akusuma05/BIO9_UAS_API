@@ -9,6 +9,7 @@ class monster extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $primaryKey = 'monster_id';
     protected $keyType = 'integer';
     protected $table = 'bio9_monster';

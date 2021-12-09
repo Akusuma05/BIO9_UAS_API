@@ -21,16 +21,6 @@ class MonsterController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +28,15 @@ class MonsterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        monster::create([
+            'monster_id' => $request->monster_id,
+            'monster_name' => $request->monster_name,
+            'monster_image_path_idle' => $request->monster_image_path_idle,
+            'monster_image_path_attack' => $request->monster_image_path_attack,
+            'monster_image_path_dead' => $request->monster_image_path_dead
+        ]);
+
+        return ['message' => 'data has been saved'];
     }
 
     /**
@@ -54,17 +52,6 @@ class MonsterController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,7 +60,14 @@ class MonsterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $monster = monster::findOrFail($id);
+        $monster->update([
+            'monster_name' => $request->monster_name,
+            'monster_image_path_idle' => $request->monster_image_path_idle,
+            'monster_image_path_attack' => $request->monster_image_path_attack,
+            'monster_image_path_dead' => $request->monster_image_path_dead
+        ]);
+        return ['message' => 'data has been updated'];
     }
 
     /**
@@ -84,6 +78,8 @@ class MonsterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $monster = monster::findOrFail($id);
+        $monster->delete();
+        return ['message' => 'data has been deleted'];
     }
 }

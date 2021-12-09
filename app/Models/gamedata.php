@@ -9,6 +9,7 @@ class gamedata extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $primaryKey = 'student_gamedata_id';
     protected $keyType = 'integer';
     protected $table = 'bio9_student_gamedata';

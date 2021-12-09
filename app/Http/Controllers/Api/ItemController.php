@@ -21,16 +21,6 @@ class ItemController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +28,14 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        item::create([
+            'item_id' => $request->item_id,
+            'item_name' => $request->item_name,
+            'base_harga' => $request->base_harga,
+            'penambahan_damage' => $request->penambahan_damage
+        ]);
+
+        return ['message' => 'data has been saved'];
     }
 
     /**
@@ -54,17 +51,6 @@ class ItemController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,7 +59,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = item::findOrFail($id);
+        $item->update([
+            'item_name' => $request->item_name,
+            'base_harga' => $request->base_harga,
+            'penambahan_damage' => $request->penambahan_damage
+        ]);
+        return ['message' => 'data has been updated'];
     }
 
     /**
@@ -84,6 +76,8 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = item::findOrFail($id);
+        $item->delete();
+        return ['message' => 'data has been deleted'];
     }
 }

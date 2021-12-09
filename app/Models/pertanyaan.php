@@ -9,6 +9,7 @@ class pertanyaan extends Model
 {
     use HasFactory;
     
+    public $timestamps = false;
     protected $primaryKey = 'pertanyaan_id';
     protected $keyType = 'integer';
     protected $table = 'bio9_pertanyaan';
