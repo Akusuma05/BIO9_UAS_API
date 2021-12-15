@@ -18,6 +18,8 @@ class LoginController extends Controller
         $this->client = Client::find(2);
     }
 
+    
+
     public function login(Request $request){
         $user = [
             'email' => $request->email,
@@ -84,6 +86,14 @@ class LoginController extends Controller
 
         return $response->json();
     }
+
+    // public function getUserDetails() {
+    //     /** @var \App\Models\User $user */
+    //     $user = Auth::user();
+    //     return response([
+    //         'student_id' => $user,
+    //     ]);
+    // }
 
     public function logout(){
         /** @var \App\Models\User $user */

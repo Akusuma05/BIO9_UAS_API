@@ -31,11 +31,17 @@ class RegisterController extends Controller
 
     private function newUser(array $data){
         return User::create([
+            'username' => $data['username'],
             'name' => $data['name'],
+            'school' => $data['school'],
+            'city' => $data['city'],
+            'birthyear' => $data['birthyear'],
             'email' => $data['email'],
             'password'=> Hash::make($data['password']),
             'role'=>'admin',
-            'created_at' => \Carbon\Carbon::now()
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
+            
         ]);
     }
 }
