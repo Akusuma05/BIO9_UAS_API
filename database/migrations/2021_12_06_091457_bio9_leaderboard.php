@@ -16,7 +16,7 @@ class Bio9Leaderboard extends Migration
         Schema::create('bio9_leaderboard', function (Blueprint $table) {
             $table->bigIncrements('leaderboard_id');
             $table->String('name');
-            $table->String('total_damage');
+            $table->integer('total_damage');
         });
     }
 
