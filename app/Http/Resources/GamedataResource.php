@@ -15,8 +15,8 @@ class GamedataResource extends JsonResource
     public function toArray($request)
     {
         return[
-            'student_gamedata_id' => $this->student_gamedata_id,
-            'student_id_gamedata' => $this->student_id_gamedata,
+            'gamedata_id' => $this->gamedata_id,
+            'student_id' => $this->student_id,
             'total_damage' => $this->total_damage,
             'health_left' => $this->health_left,
             'money' => $this->money,

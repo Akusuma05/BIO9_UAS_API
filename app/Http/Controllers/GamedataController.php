@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Resources\GamedataResource;
 use App\Models\gamedata;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class GamedataController extends Controller
 {
+    
+    public function getGameData($id)
+    {
+       $gamedata = gamedata::where('student_id',$id)->first();
+       return response()->json($gamedata, 200);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +21,17 @@ class GamedataController extends Controller
      */
     public function index()
     {
-        $gamedata = gamedata::all();
-        return GamedataResource::collection($gamedata);
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -37,8 +51,6 @@ class GamedataController extends Controller
             'time_left' => $request->time_left,
             'current_damage' => $request->current_damage,
         ]);
-
-        return ['message' => 'data has been saved'];
     }
 
     /**
@@ -49,8 +61,18 @@ class GamedataController extends Controller
      */
     public function show($id)
     {
-        $gamedata = gamedata::all()->where('student_id', $id);
-        return ['gamedata' => GamedataResource::collection($gamedata)];
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -71,7 +93,6 @@ class GamedataController extends Controller
             'time_left' => $request->time_left,
             'current_damage' => $request->current_damage,
         ]);
-        return ['message' => 'data has been updated'];
     }
 
     /**
@@ -82,8 +103,6 @@ class GamedataController extends Controller
      */
     public function destroy($id)
     {
-        $gamedata = gamedata::findOrFail($id);
-        $gamedata->delete();
-        return ['message' => 'data has been deleted'];
+        //
     }
 }

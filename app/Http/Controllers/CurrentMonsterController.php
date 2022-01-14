@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\TerbunuhResource;
-use App\Models\terbunuh;
+use App\Models\current_monster;
 use Illuminate\Http\Request;
 
-class TerbunuhController extends Controller
+class CurrentMonsterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,17 @@ class TerbunuhController extends Controller
      */
     public function index()
     {
-        $terbunuh = terbunuh::all();
-        return TerbunuhResource::collection($terbunuh);
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -28,15 +35,13 @@ class TerbunuhController extends Controller
      */
     public function store(Request $request)
     {
-        terbunuh::create([
-            'terbunuh_id' => $request->terbunuh_id,
-            'monster_id_terbunuh' => $request->monster_id_terbunuh,
-            'student_gamedata_id_terbunuh' => $request->student_gamedata_id_terbunuh,
+        current_monster::create([
+            'current_monster_id' => $request->current_monster_id,
+            'monster_id' => $request->monster_id,
+            'gamedata_id' => $request->gamedata_id,
             'monster_base_health' => $request->monster_base_health,
             'monster_health_left' => $request->monster_health_left
         ]);
-
-        return ['message' => 'data has been saved'];
     }
 
     /**
@@ -47,8 +52,19 @@ class TerbunuhController extends Controller
      */
     public function show($id)
     {
-        $terbunuh = terbunuh::all()->where('student_gamedata_id_terbunuh', $id);
-        return ['terbunuh' => TerbunuhResource::collection($terbunuh)];
+        $current_monster = current_monster::where('gamedata_id', $id)->first();
+        return response()->json($current_monster, 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -60,14 +76,14 @@ class TerbunuhController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $terbunuh = terbunuh::where('terbunuh_id', $id);
-        $terbunuh->update([
-            'monster_id_terbunuh' => $request->monster_id_terbunuh,
-            'student_gamedata_id_terbunuh' => $request->student_gamedata_id_terbunuh,
+        $current_monster = current_monster::where('current_monster_id', $id);
+        $current_monster->update([
+            
+            'monster_id' => $request->monster_id,
+            'gamedata_id' => $request->gamedata_id,
             'monster_base_health' => $request->monster_base_health,
             'monster_health_left' => $request->monster_health_left
         ]);
-        return ['message' => 'data has been updated'];
     }
 
     /**
@@ -78,8 +94,6 @@ class TerbunuhController extends Controller
      */
     public function destroy($id)
     {
-        $terbunuh = terbunuh::where('terbunuh_id', $id);
-        $terbunuh->delete();
-        return ['message' => 'data has been deleted'];
+        //
     }
 }

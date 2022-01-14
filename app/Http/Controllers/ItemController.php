@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\ItemResource;
 use App\Models\item;
 use Illuminate\Http\Request;
 
@@ -16,8 +14,17 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $item = item::all();
-        return ItemResource::collection($item);
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -28,14 +35,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        item::create([
-            'item_id' => $request->item_id,
-            'item_name' => $request->item_name,
-            'base_harga' => $request->base_harga,
-            'penambahan_damage' => $request->penambahan_damage
-        ]);
-
-        return ['message' => 'data has been saved'];
+        //
     }
 
     /**
@@ -46,8 +46,19 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $item = item::all()->where('item_id', $id);
-        return ['Shop' => ItemResource::collection($item)];
+        $item = item::find($id);
+        return response()->json($item, 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -59,13 +70,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = item::findOrFail($id);
-        $item->update([
-            'item_name' => $request->item_name,
-            'base_harga' => $request->base_harga,
-            'penambahan_damage' => $request->penambahan_damage
-        ]);
-        return ['message' => 'data has been updated'];
+        //
     }
 
     /**
@@ -76,8 +81,6 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        $item = item::findOrFail($id);
-        $item->delete();
-        return ['message' => 'data has been deleted'];
+        //
     }
 }
